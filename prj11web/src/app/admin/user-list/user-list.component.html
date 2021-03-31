@@ -1,0 +1,5 @@
+<div class="row" *ngFor="let u of getUsers()" >
+    <div class="col-xs-12">
+        <app-user-item [user]="u" [uid]="u.id"></app-user-item>
+    </div>
+</div>
