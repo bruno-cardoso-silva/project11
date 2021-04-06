@@ -35,7 +35,6 @@ export class AuthComponent {
 
 
         this.responseObs.subscribe(responseData=> {
-                console.log(responseData)
                 this.isLoading = false;
                 this.router.navigate(['/shopping']);
             }, errorMessage => {

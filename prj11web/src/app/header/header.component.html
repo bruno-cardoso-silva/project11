@@ -19,9 +19,14 @@
             <ul class="nav navbar-nav navbar-right">
                     <ul class="nav navbar-nav">
                         <li routerLinkActive="active"> 
-                            <a routerLink="admin" *ngIf="isAdmin">Admin</a></li>
+                            <a routerLink="admin" *ngIf="isAdmin">Admin</a>
+                        </li>
                         <li routerLinkActive="active"> 
-                        <a routerLink="provider" *ngIf="isProvider">Provider</a></li>
+                            <a routerLink="supplier">Supplier</a>
+                        </li>
+                        <li routerLinkActive="active"> 
+                             <a routerLink="provider" *ngIf="isProvider">Provider</a>
+                         </li>
                     </ul>   
             </ul>
         </div>

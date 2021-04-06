@@ -17,9 +17,21 @@ import { UserItemComponent } from './admin/user-list/user-item/user-item.compone
 import { AdminDetailsComponent } from './admin/admin-details/admin-details.component';
 import { AdminEditComponent } from './admin/admin-edit/admin-edit.component';
 import { AdminStartComponent } from './admin/admin-start/admin-start.component';
-import { ProviderComponent } from './provider/provider.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShoppingComponent } from './shopping/shopping.component';
+import { SupplierComponent } from './supplier/supplier.component';
+import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
+import { SuppleirItemComponent } from './supplier/supplier-list/suppleir-item/suppleir-item.component';
+import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
+import { SupplierStartComponent } from './supplier/supplier-start/supplier-start.component';
+import { SupplierDetailsComponent } from './supplier/supplier-details/supplier-details.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { ProductComponent } from './product/product.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ItemComponent } from './product/product-list/item/item.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { ProductStartComponent } from './product/product-start/product-start.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 
 @NgModule({
@@ -33,8 +45,21 @@ import { ShoppingComponent } from './shopping/shopping.component';
     AdminDetailsComponent,
     AdminEditComponent,
     AdminStartComponent,
-    ProviderComponent,
-    ShoppingComponent
+    ShoppingComponent,
+    SupplierComponent,
+    SupplierListComponent,
+    SuppleirItemComponent,
+    SupplierEditComponent,
+    SupplierStartComponent,
+    SupplierDetailsComponent,
+    LoadingSpinnerComponent,
+    ProductComponent,
+    ProductListComponent,
+    ItemComponent,
+    ProductDetailsComponent,
+    ProductStartComponent,
+    ProductEditComponent    
+
     ],
   imports: [
     BrowserModule,
@@ -45,7 +70,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
     AppRouting,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireFunctionsModule,
-    FontAwesomeModule    
+    FontAwesomeModule
   ],
   providers: [
     { provide: REGION, useValue: 'us-central1' },
