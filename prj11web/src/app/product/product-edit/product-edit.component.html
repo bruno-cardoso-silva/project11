@@ -1,1 +1,60 @@
-<p>product-edit works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="pull-left">
+        </div>
+        <div class="pull-right">
+          <button type="button" class="btn btn-primary" 
+                  style="margin-right: 5px;" (click)="onSaveClicked()" [disabled]="!f.valid">Save</button>
+                  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onCancel()" >Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="onDelete()" >Delete</button>
+                </div>
+    </div>
+  </div>
+  <hr>  
+  <div class="row">
+    <div class="col-xs-12">
+      <form  [formGroup]="f">
+        <div class="form-row">
+          <div class="form-group col-xs-6"> 
+            <label for="name-id">Name</label>
+            <input type="name" class="form-control" id="name-id" name="name" 
+                   formControlName="name">
+          </div>
+          <div class="form-group col-xs-6">
+            <label for="producerName-id">Producer Name</label>
+            <input type="text" class="form-control" id="producerName-id" 
+                    name="producerName" 
+                    formControlName="producerName">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-xs-6"> 
+            <label for="price-id">Price</label>
+            <input type="text" class="form-control" id="price-id"
+                   name="price" formControlName="price">
+          </div>
+          <div class="form-group col-xs-6"> 
+            <label for="supplier-id">Supplier</label>
+            <select formControlName="supplier" id="supplier-id" class="form-control">
+              <option *ngFor="let s of suppliers" [ngValue]="s">
+                {{ s.name }}
+              </option>
+            </select>
+          </div>
+ 
+        </div>
+        <div class="form-row">
+          <div class="form-group col-xs-6"> 
+            <label for="unit-type-id">unit type</label>
+            <input type="text" class="form-control" id="unit-type-id" 
+                   name="unitType" formControlName="unitType">
+          </div>
+          <div class="form-group col-xs-6"> 
+            <label for="amount-id">Amount</label>
+            <input type="text" class="form-control" id="aount-id" 
+                    name="amount" formControlName="amount">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

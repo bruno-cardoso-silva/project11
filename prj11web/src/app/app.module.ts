@@ -28,10 +28,10 @@ import { SupplierDetailsComponent } from './supplier/supplier-details/supplier-d
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
-import { ItemComponent } from './product/product-list/item/item.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { ProductStartComponent } from './product/product-start/product-start.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { ProductItemComponent } from './product/product-list/item/product-item.component';
 
 
 @NgModule({
@@ -55,7 +55,7 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     LoadingSpinnerComponent,
     ProductComponent,
     ProductListComponent,
-    ItemComponent,
+    ProductItemComponent,
     ProductDetailsComponent,
     ProductStartComponent,
     ProductEditComponent    

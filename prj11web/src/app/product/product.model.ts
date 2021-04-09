@@ -7,9 +7,10 @@ export enum UnitType {
 }
 
 export class Product {
-    name: string;
-    producerName: string;
-    price: number;
-    supplier: Supplier;
-    unityType: UnitType;
+    constructor(public name: string, 
+                public producerName: string,
+                public price: string,
+                public supplier: Supplier,
+                public unitType: UnitType,
+                public amount: number){}
 }

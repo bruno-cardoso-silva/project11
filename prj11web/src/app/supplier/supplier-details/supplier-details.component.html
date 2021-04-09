@@ -26,18 +26,42 @@
                  name="email" [ngModel]="supplier.email" disabled>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-xs-8"> 
-          <label for="address-id">Address</label>
-          <input type="text" class="form-control" id="address-id"
-                name="address" [ngModel]="supplier.address" disabled>
-        </div>
-        <div class="form-group col-xs-4"> 
-          <label for="cep-id">CEP</label>
+      <div class="form-row" *ngIf="supplier">
+        <div class="form-group col-xs-3"> 
+          <label for="cep-id">Cep</label>
           <input type="text" class="form-control" id="cep-id"
-                 name="cep" disabled [ngModel]="supplier.cep">
+                 name="cep" disabled [ngModel]="supplier.address.cep">
         </div>
-
+        <div class="form-group col-xs-3"> 
+          <label for="uf-id">UF</label>
+          <input type="text" class="form-control" id="logradouro-id"
+                 name="uf" disabled [ngModel]="supplier.address.uf">
+        </div> 
+        <div class="form-group col-xs-6"> 
+          <label for="cidade-id">Cidade</label>
+          <input type="text" class="form-control" id="cidade-id"
+                 name="cidade" disabled [ngModel]="supplier.address.localidade">
+        </div>      
+      </div>
+      <div class="form-row">
+        <div class="form-group col-xs-4">   
+          <label for="bairro-id">Bairro</label>
+          <input type="text" class="form-control" 
+                 id="bairro-id"
+                 name="bairro" disabled [ngModel]="supplier.address.bairro">
+        </div>
+        <div class="form-group col-xs-6">   
+          <label for="rua-id">Rua</label>
+          <input type="text" class="form-control" 
+                 id="rua-id"
+                 name="rua" disabled [ngModel]="supplier.address.logradouro">
+        </div>
+        <div class="form-group col-xs-2">   
+          <label for="numero-id">Numero</label>
+          <input type="text" class="form-control" 
+                 id="numero-id"
+                 name="numero" disabled [ngModel]="supplier.address.numero">
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-xs-6"> 
@@ -65,17 +89,15 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Amount</th>
-                <th scope="col">Ordem de compra</th>
                 <th scope="col">Best price</th>
               </tr>
             </thead>
             <tbody>
-              <tr [ngClass]="{'danger' :true}">
-                <th scope="row"> 1</th>
-                <td>Mark</td>
-                <td>-5</td>
-                <td>10</td>
-                <td>100</td>
+              <tr *ngFor="let p of (products | async) | keyvalue; let i = index">
+                <th scope="row"> {{i}}</th>
+                <td>{{p.value.name}}</td>
+                <td>{{p.value.amount}}</td>
+                <td>{{p.value.price}}</td>
               </tr>
             </tbody>
           </table>

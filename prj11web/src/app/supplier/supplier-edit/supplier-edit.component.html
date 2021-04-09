@@ -5,18 +5,12 @@
       <div class="pull-right">
         <button type="button" class="btn btn-primary" 
                 style="margin-right: 5px;" (click)="onSaveClicked()" [disabled]="!f.valid">Save</button>
-                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onCancel()" >Cancel</button>
-                <button type="button" class="btn btn-danger" (click)="onDelete()" >Delete</button>
-              </div>
+              <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onCancel()" >Cancel</button>
+              <button type="button" class="btn btn-danger" (click)="onDelete()" >Delete</button>
+        </div>
   </div>
 </div>
 <hr>  
-<div class="row">
-  <div class="col-xs-12">
-    <app-loading-spinner *ngIf="isLoading === true"></app-loading-spinner> 
-  </div>
-</div>
-
 <div class="row" *ngIf="isLoading === false">
   <div class="col-xs-12">
     <form  [formGroup]="f">
@@ -32,18 +26,54 @@
                   placeholder="Email" name="email" formControlName="email">
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-xs-8"> 
-          <label for="address-id">Address</label>
-          <input type="text" class="form-control" id="address-id"
-                placeholder="address" name="address" formControlName="address">
+      <div class="form-row" formGroupName="address">
+          <div class="form-group col-xs-3"> 
+            <label for="cep-id">Cep</label>
+            <div style="display: flex;">
+              <input type="number" class="form-control" 
+                    id="cep-id"
+                    (input)="onCepInputChanged($event)"
+                    name="cep" formControlName="cep">
+              <button type="button"
+                      [ngClass]="{'btn btn-primary': isSearchCEPDisabled === false}" 
+                      [disabled]="isSearchCEPDisabled"
+                      (click)="searchCEP()">
+                 <fa-icon [icon]="faSearchLocation"></fa-icon>
+              </button>
+            </div>
+          </div>
+          <div class="form-group col-xs-3"> 
+            <label for="uf-id">UF</label>
+            <input type="text" class="form-control" 
+                   id="uf-id"
+                   name="uf" formControlName="uf">
+          </div> 
+          <div class="form-group col-xs-6"> 
+            <label for="localidade-id">Cidade</label>
+            <input type="text" class="form-control" 
+                   id="localidade-id"
+                   name="localidade" formControlName="localidade">
+          </div>      
+      </div>
+      <div class="form-row" formGroupName="address">
+        <div class="form-group col-xs-4">   
+          <label for="bairro-id">Bairro</label>
+          <input type="text" class="form-control" 
+                 id="bairro-id"
+                 name="bairro" formControlName="bairro">
         </div>
-        <div class="form-group col-xs-4"> 
-          <label for="cep-id">CEP</label>
-          <input type="text" class="form-control" id="cep-id"
-                placeholder="cep" name="cep" formControlName="cep">
+        <div class="form-group col-xs-6">   
+          <label for="rua-id">Rua</label>
+          <input type="text" class="form-control" 
+                 id="rua-id"
+                 name="rua" formControlName="logradouro">
         </div>
-
+        <div class="form-group col-xs-2">   
+          <label for="numero-id">Numero</label>
+          <input type="text" class="form-control" 
+                 id="numero-id"
+                 name="numero" formControlName="numero">
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-xs-6"> 

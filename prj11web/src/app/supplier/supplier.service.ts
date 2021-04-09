@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Supplier } from "./supplier.model";
 import { Subject } from "rxjs";
 import { map,tap } from "rxjs/operators";
+import { CEPService } from "../shared/cep.service";
 
 @Injectable({providedIn: 'root'})
 export class SupplierService {
@@ -11,7 +12,7 @@ export class SupplierService {
 
     private url = 'https://prj11web-default-rtdb.firebaseio.com';
 
-    constructor(private http: HttpClient){ }
+    constructor(private http: HttpClient, private cepSvc: CEPService){ }
  
     updateSuppliers(suppliers: Supplier []){
         return this.http
@@ -43,5 +44,9 @@ export class SupplierService {
         this.updateSuppliers(this.suppliers).subscribe(suppliers => {
             this.supplierChanged.next(this.suppliers.slice());
         })
+    }
+
+    getAddress(cep: string){
+        return this.cepSvc.getAddress(cep);
     }
 }

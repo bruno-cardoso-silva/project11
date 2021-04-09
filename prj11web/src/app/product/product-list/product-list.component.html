@@ -1,1 +1,20 @@
-<p>product-list works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="pull-left">
+            <button class="btn btn-primary" 
+                    (click)="onNewButtonClicked()">
+                        New Product <fa-icon [icon]="faPlusSquare"></fa-icon>
+            </button>    
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+</div>
+  <hr>  
+<div class="row">
+    <div class="col-xs-12">
+         <app-product-item *ngFor="let p of products; let i = index" 
+                          [product]="p"
+                          [index]="i"></app-product-item>
+    </div>
+</div>

@@ -9,7 +9,6 @@ import { SupplierService } from './supplier.service';
 })
 export class SupplierComponent implements OnInit {
 
-  constructor(private supplierSvc: SupplierService) { }
 
   ngOnInit(): void {
   }

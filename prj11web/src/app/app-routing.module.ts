@@ -7,6 +7,10 @@ import { AdminComponent } from "./admin/admin.component";
 import { AuthComponent } from "./auth/auth.component";
 import { AdminGuard } from "./auth/guard/admin-guard.service";
 import { ProviderGuard } from "./auth/guard/provider-guard.service";
+import { ProductDetailsComponent } from "./product/product-details/product-details.component";
+import { ProductEditComponent } from "./product/product-edit/product-edit.component";
+import { ProductStartComponent } from "./product/product-start/product-start.component";
+import { ProductComponent } from "./product/product.component";
 import { ShoppingComponent } from "./shopping/shopping.component";
 import { SupplierDetailsComponent } from "./supplier/supplier-details/supplier-details.component";
 import { SupplierEditComponent } from "./supplier/supplier-edit/supplier-edit.component";
@@ -30,12 +34,22 @@ const appRoute: Routes  = [
 //  { path: 'supplier', component: SupplierComponent, canActivate: [AdminGuard], 
   { path: 'supplier', component: SupplierComponent, 
         children: [ 
-        { path: '', component: SupplierStartComponent },
-        { path: 'new', component: SupplierEditComponent },
-        { path: ':id', component: SupplierDetailsComponent },
-        { path: ':id/edit', component: SupplierEditComponent}
-      ]
-}]
+          { path: '', component: SupplierStartComponent },
+          { path: 'new', component: SupplierEditComponent },
+          { path: ':id', component: SupplierDetailsComponent },
+          { path: ':id/edit', component: SupplierEditComponent}
+        ]
+  },
+  //  { path: 'product', component: SupplierComponent, canActivate: [AdminGuard], 
+  { path: 'product', component: ProductComponent, 
+        children: [ 
+          { path: '', component: ProductStartComponent },
+          { path: 'new', component: ProductEditComponent },
+          { path: ':id', component: ProductDetailsComponent },
+          { path: ':id/edit', component: ProductEditComponent}
+        ]
+  },
+]
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoute)],
