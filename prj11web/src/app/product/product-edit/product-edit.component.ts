@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Product } from '../product.model';
+import { Product, UnitType } from '../product.model';
 import { ProductService } from '../product.service';
 import { SupplierService } from 'src/app/supplier/supplier.service';
 import { Supplier } from 'src/app/supplier/supplier.model';
@@ -17,7 +17,8 @@ export class ProductEditComponent implements OnInit {
   editMode= false;
   product: Product;
   suppliers: Supplier[];
-
+  unTypes = Object.values(UnitType);
+  
   constructor(private route: ActivatedRoute, 
               private router: Router, 
               private productSvc: ProductService,
@@ -37,16 +38,17 @@ export class ProductEditComponent implements OnInit {
     if(this.editMode){
         this.product = this.productSvc.getProductById(id);
     }else{
-       this.product = new Product(null,null,null,null,null,null);
+       this.product = new Product(null,null,null,null,null,null, null, null, null);
     }
 
     this.f = new FormGroup({
         'name': new FormControl(this.product.name, Validators.required),
         'producerName': new FormControl(this.product.producerName, [Validators.required]),
-        'price': new FormControl(this.product.price, Validators.required),
+        'sellPrice': new FormControl(this.product.sellPrice, Validators.required),
+        'buyPrice': new FormControl(this.product.buyPrice, Validators.required),
         'supplier': new FormControl(this.product.supplier, Validators.required),
         'unitType': new FormControl(this.product.unitType, Validators.required),
-        'amount': new FormControl(this.product.amount, Validators.required)
+        'amount': new FormControl(this.product.amount, Validators.required),
     })
   }
 
@@ -55,33 +57,43 @@ export class ProductEditComponent implements OnInit {
   }
 
   onSaveClicked(){
+    let product;
     if(this.editMode){
-      const product = this.productSvc.products[this.id]; 
+      product = this.productSvc.products[this.id]; 
       product.name = this.f.value.name; 
       product.producerName = this.f.value.producerName;
-      product.price = this.f.value.price;
+      product.sellPrice = this.f.value.sellPrice;
+      product.buyPrice = this.f.value.buyPrice;
       product.supplier = this.f.value.supplier;
       product.unitType = this.f.value.unitType;
       product.amount = this.f.value.amount;
-    }else{
-      this.productSvc
-        .products.push(new Product(this.f.value.name,
+    }
+    else{
+      product = new Product(this.f.value.name,
                                    this.f.value.producerName, 
-                                   this.f.value.price,
+                                   this.f.value.buyPrice,
+                                   this.f.value.sellPrice,
                                    this.f.value.supplier,
-                                   this.f.value.number,
-                                   this.f.value.amount));
+                                   this.f.value.unitType,
+                                   this.f.value.amount, 
+                                   this.f.value.dueDate, 
+                                   this.f.value.producedDate);
+      this.productSvc.products.push(product);
     }
 
-    this.productSvc.updateProduct(this.productSvc.products.slice()).subscribe(products => {
-        this.productSvc.productChanged.next(this.productSvc.products.slice());
-        this.router.navigate(['../'], {relativeTo: this.route});
-
+      this.productSvc.updateProduct(this.productSvc.products.slice()).subscribe(products => {
+          this.productSvc.productChanged.next(this.productSvc.products.slice());
+          this.router.navigate(['../'], {relativeTo: this.route});
       });
   }
 
   onDelete(){
       this.productSvc.deleteProduct(this.id);
-      this.router.navigate(['/product']);
+      this.router.navigate(['/product/in']);
   }
+
+  compareSupplierFn(c1: any, c2:any): boolean {     
+    return c1 && c2 ? c1.email === c2.email : c1 === c2; 
+  }
+
 }

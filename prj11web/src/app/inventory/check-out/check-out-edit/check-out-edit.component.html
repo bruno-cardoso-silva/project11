@@ -1,0 +1,142 @@
+<div class="row">
+    <div class="col-xs-12">
+      <div class="pull-left">
+        </div>
+        <div class="pull-right">
+          <button type="button" class="btn btn-primary" 
+                  style="margin-right: 5px;" (click)="onSaveClicked()" [disabled]="items.length === 0">Save</button>
+                  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onCancel()" >Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="onDelete()" >Delete</button>
+        </div>
+    </div>
+  </div>
+<hr>  
+<app-alert [message]="error" *ngIf="error" (close)="onHandleError()" ></app-alert>
+  
+<form [formGroup]="f" >
+  <div class="row">
+   <div class="col-xs-12">
+          <div class="form-row">
+          <div class="form-group col-xs-3"> 
+            <label for="notaFiscal-id">Code</label>
+            <input type="text" class="form-control" 
+                   id="code-id" name="code" formControlName="code">
+          </div>
+          <div class="form-group col-xs-3">
+            <label for="supplier-id">Supplier</label>
+            <select formControlName="supplier" 
+                    id="supplier-id" 
+                    [(ngModel)]="selectedSupplier" 
+                    [compareWith]="compareSupplierFn" 
+                    [disabled]="editMode"
+                    class="form-control" 
+                    (change)="onChange($event)">
+              <option *ngFor="let s of suppliers" [ngValue]="s">
+                {{ s.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-xs-3">
+            <label for="date-id">Date</label>
+            <input type="date" class="form-control" id="date-id" 
+                    name="producerName" formControlName="dateTransc" disabled>
+          </div>
+        </div>
+   </div>
+</div>
+<div class="row" formGroupName="item">
+  <div class="col-xs-12">
+        <div class="form-row">
+          <div class="form-group col-xs-3"> 
+            <label for="item-id">Item</label>
+             <select formControlName="product" 
+                    id="item-id"
+                    class="form-control" 
+                    [compareWith]="compareProductsFn"  
+                    [(ngModel)]="selectedProduct"
+                    (change)="onChangeProduct($event)">
+              <option *ngFor="let p of products" [ngValue]="p">
+                {{ p.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-xs-2"> 
+            <label for="qtd-id">Qtd<span style="color: red;"> Max({{maxQtd}})</span></label>
+            <input type="number" 
+                   class="form-control" 
+                   id="qtd-id" 
+                   name="qtd" formControlName="qtd">
+          </div>
+
+          <div class="form-group col-xs-2"> 
+            <label for="unt-id">Un.</label>
+            <select formControlName="untType" id="unt-id"
+                    class="form-control" disabled>
+              <option *ngFor="let u of unTypes" [ngValue]="u">
+                {{ u }}
+              </option>
+            </select>
+          </div>
+         
+          <div class="form-group col-xs-2"> 
+            <label for="sell-price-id">Price</label>
+            <input type="number" class="form-control" id="price-id" 
+                    name="sellPrice" formControlName="sellPrice" disabled>
+          </div>
+          
+          <div class="col-xs-1"> 
+               <button class="btn btn-primary" 
+                       style="margin-top: 9%;" 
+                       (click)="onAddItem()"
+                       [disabled]="!f.valid">
+                <fa-icon [icon]="faPlusSquare"></fa-icon>
+              </button>
+          </div>
+        </div>
+    </div>
+  </div>
+</form>
+<div class="form-group row">
+  <div class="form-group col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading">Items</div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Item</th>
+              <th scope="col">Qtd</th>
+              <th scope="col">untType</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let it of items; let i = index">
+              <th scope="row"> {{i}}</th>
+              <td>{{it.product.name}}</td>
+              <td>{{it.qtd}}</td>
+              <td>{{it.un}}</td>
+              <td>{{it.product.sellPrice}}</td>
+              <td>{{it.product.buyPrice * it.qtd}}</td>
+              <td>
+                  <button class="btn btn-danger" style="margin-right: 5px;" (click)="removeItem(i)">
+                    <fa-icon [icon]="faTrashAlt"></fa-icon>
+                  </button> 
+                   <button class="btn btn-primary" (click)="editItem(i)">
+                     <fa-icon [icon]="faEdit"></fa-icon>
+                  </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>    
+  </div>  
+</div>
+</div>
+
+
+

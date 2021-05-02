@@ -14,47 +14,71 @@
   <div class="row">
     <div class="col-xs-12">
       <form  [formGroup]="f">
-        <div class="form-row">
-          <div class="form-group col-xs-6"> 
+        <div class="row">
+          <div class="col-xs-8"> 
             <label for="name-id">Name</label>
             <input type="name" class="form-control" id="name-id" name="name" 
                    formControlName="name">
+            <span class="help-block" style="color: red;" *ngIf="!f.get('name').valid && f.get('name').touched">Please enter a valid name</span>
           </div>
-          <div class="form-group col-xs-6">
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
             <label for="producerName-id">Producer Name</label>
             <input type="text" class="form-control" id="producerName-id" 
                     name="producerName" 
                     formControlName="producerName">
+              <span class="help-block" style="color: red;" *ngIf="!f.get('producerName').valid && f.get('producerName').touched">Please enter a valid producer name</span>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-xs-6"> 
-            <label for="price-id">Price</label>
-            <input type="text" class="form-control" id="price-id"
-                   name="price" formControlName="price">
-          </div>
-          <div class="form-group col-xs-6"> 
+        <div class="row">
+          <div class="col-xs-6"> 
             <label for="supplier-id">Supplier</label>
-            <select formControlName="supplier" id="supplier-id" class="form-control">
+            <select formControlName="supplier" 
+                    id="supplier-id" 
+                    [compareWith]="compareSupplierFn"
+                    class="form-control">
               <option *ngFor="let s of suppliers" [ngValue]="s">
                 {{ s.name }}
               </option>
             </select>
+            <span class="help-block" style="color: red;" *ngIf="!f.get('supplier').valid && f.get('supplier').touched">Please select a supplier from dropbox</span>
           </div>
- 
         </div>
-        <div class="form-row">
-          <div class="form-group col-xs-6"> 
-            <label for="unit-type-id">unit type</label>
-            <input type="text" class="form-control" id="unit-type-id" 
-                   name="unitType" formControlName="unitType">
-          </div>
-          <div class="form-group col-xs-6"> 
-            <label for="amount-id">Amount</label>
+        <div class="row">
+          <div class="col-xs-3"> 
+            <label for="amount-id">Qtd</label>
             <input type="text" class="form-control" id="aount-id" 
                     name="amount" formControlName="amount">
+                  <span class="help-block" style="color: red;" *ngIf="!f.get('amount').valid && f.get('amount').touched">Please enter a valid amount</span>
+          </div>
+
+          <div class="col-xs-3"> 
+            <label for="unt-id">Un.</label>
+            <select formControlName="unitType" id="unt-id"
+                    class="form-control">
+              <option *ngFor="let u of unTypes" [ngValue]="u">
+                {{ u }}
+              </option>
+            </select>
+            <span class="help-block" style="color: red;" *ngIf="!f.get('unitType').valid && f.get('unitType').touched">Please enter a valid amount</span>
+          </div>
+
+          <div class="col-xs-3"> 
+            <label for="buy-price-id">Buy Price</label>
+            <input type="number" class="form-control" id="buy-price-id"
+                   name="buyPrice" formControlName="buyPrice">
+                   <span class="help-block" style="color: red;" *ngIf="!f.get('buyPrice').valid && f.get('buyPrice').touched">Please enter a valid price</span>
+          </div>
+
+          <div class="col-xs-3"> 
+            <label for="sell-price-id">Sell Price</label>
+            <input type="number" class="form-control" id="sell-price-id"
+                   name="sellPrice" formControlName="sellPrice">
+                   <span class="help-block" style="color: red;" *ngIf="!f.get('sellPrice').valid && f.get('sellPrice').touched">Please enter a valid price</span>
           </div>
         </div>
+
       </form>
     </div>
   </div>

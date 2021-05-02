@@ -14,20 +14,23 @@
 <div class="row" *ngIf="isLoading === false">
   <div class="col-xs-12">
     <form  [formGroup]="f">
-      <div class="form-row">
-        <div class="form-group col-xs-6"> 
+      <div class="row">
+        <div class="col-xs-6"> 
           <label for="name-id">Name</label>
           <input type="name" class="form-control" id="name-id" name="name" 
                  placeholder="name" formControlName="name">
+          <span class="help-block" style="color: red;" *ngIf="!f.get('name').valid && f.get('name').touched">Please enter a valid name</span>
+
         </div>
-        <div class="form-group col-xs-6">
+        <div class="col-xs-6">
           <label for="email-id">Email</label>
           <input type="email" class="form-control" id="email-id" 
                   placeholder="Email" name="email" formControlName="email">
+              <span class="help-block" style="color: red;" *ngIf="!f.get('email').valid && f.get('email').touched">Please enter a valid email</span>
         </div>
       </div>
-      <div class="form-row" formGroupName="address">
-          <div class="form-group col-xs-3"> 
+      <div class="row" formGroupName="address">
+          <div class="col-xs-3"> 
             <label for="cep-id">Cep</label>
             <div style="display: flex;">
               <input type="number" class="form-control" 
@@ -41,50 +44,68 @@
                  <fa-icon [icon]="faSearchLocation"></fa-icon>
               </button>
             </div>
+            <span class="help-block" style="color: red;" 
+                  *ngIf="!f.get('address.cep').valid && f.get('address.cep').touched">Please enter a valid cep</span>
           </div>
-          <div class="form-group col-xs-3"> 
+          <div class="col-xs-3"> 
             <label for="uf-id">UF</label>
             <input type="text" class="form-control" 
                    id="uf-id"
                    name="uf" formControlName="uf">
+              <span class="help-block" style="color: red;" 
+                *ngIf="!f.get('address.uf').valid && f.get('address.uf').touched">Please enter a valid uf</span>
           </div> 
-          <div class="form-group col-xs-6"> 
+          <div class="col-xs-6"> 
             <label for="localidade-id">Cidade</label>
             <input type="text" class="form-control" 
                    id="localidade-id"
                    name="localidade" formControlName="localidade">
+              <span class="help-block" style="color: red;" 
+                    *ngIf="!f.get('address.localidade').valid && f.get('address.localidade').touched">Please enter a valid city</span>
           </div>      
       </div>
-      <div class="form-row" formGroupName="address">
-        <div class="form-group col-xs-4">   
+      <div class="row" formGroupName="address">
+        <div class="col-xs-4">   
           <label for="bairro-id">Bairro</label>
           <input type="text" class="form-control" 
                  id="bairro-id"
                  name="bairro" formControlName="bairro">
+          <span class="help-block" style="color: red;" 
+                 *ngIf="!f.get('address.bairro').valid && f.get('address.bairro').touched">Please enter a valid bairro</span>
         </div>
-        <div class="form-group col-xs-6">   
+        <div class="col-xs-6">   
           <label for="rua-id">Rua</label>
           <input type="text" class="form-control" 
                  id="rua-id"
                  name="rua" formControlName="logradouro">
+          <span class="help-block" style="color: red;" 
+                 *ngIf="!f.get('address.logradouro').valid && f.get('address.logradouro').touched">Please enter a valid street</span>
+
         </div>
-        <div class="form-group col-xs-2">   
+        <div class="col-xs-2">   
           <label for="numero-id">Numero</label>
           <input type="text" class="form-control" 
                  id="numero-id"
                  name="numero" formControlName="numero">
+            <span class="help-block" style="color: red;" 
+                 *ngIf="!f.get('address.numero').valid && f.get('address.numero').touched">Please enter a valid number</span>
+
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-xs-6"> 
-          <label for="cnpj-id">CNPJ</label>
-          <input type="cnpj" class="form-control" id="cnpj-id" 
-                 placeholder="cnpj" name="cnpj" formControlName="cnpj">
+      <div class="row">
+        <div class="col-xs-3"> 
+          <label for="cnpj-id">CPF / CNPJ</label>
+          <input type="number" class="form-control" id="cnpj-id" 
+                 placeholder="cnpj" name="cnpj" formControlName="cnpj" maxlength="10">
+          <span class="help-block" style="color: red;" 
+                 *ngIf="!f.get('cnpj').valid && f.get('cnpj').touched">Please enter a valid street</span>
         </div>
-        <div class="form-group col-xs-6"> 
+        <div class="col-xs-3"> 
           <label for="phone-id">Phone</label>
-          <input type="phonr" class="form-control" id="phone-id" 
-                 placeholder="phone" name="phone" formControlName="phone">
+          <input type="number" class="form-control" id="phone-id" 
+                 placeholder="phone" name="phone" formControlName="phone" maxlength="12">
+          <span class="help-block" style="color: red;" 
+                 *ngIf="!f.get('phone').valid && f.get('phone').touched">Please enter a valid street</span>
         </div>
       </div>
     </form>

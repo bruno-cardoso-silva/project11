@@ -5,7 +5,6 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { catchError, first, map, tap } from "rxjs/operators";
 import { User } from "./user.model";
 import { AngularFireFunctions } from '@angular/fire/functions';
-import { length } from "_node_modules/@protobufjs/utf8";
 
 export interface AuthResponseData {
     kind: string;
@@ -153,9 +152,13 @@ export class AuthService {
         case 'EMAIL_NOT_FOUND' :
             errorMessage = "Email not found";
             break;
-        case 'INVALID_PASSWORD' :
+        case 'INVALID_PASSWORD' : 
             errorMessage = "Password or Email is invalid";
             break;
+        case 'INVALID_EMAIL' :
+            errorMessage = "Email is not valid";
+        break;
+    
         }
 
       return throwError(errorMessage);

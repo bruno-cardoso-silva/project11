@@ -14,13 +14,15 @@
   <div class="row">
     <div class="col-xs-12">
       <form>
-        <div class="form-row">
-          <div class="form-group col-xs-6"> 
+        <div class="row">
+          <div class="col-xs-6"> 
             <label for="name-id">Name</label>
             <input type="name" class="form-control" id="name-id" name="name" 
                    [ngModel]="product.name" disabled>
           </div>
-          <div class="form-group col-xs-6">
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
             <label for="producerName-id">Producer Name</label>
             <input type="text" class="form-control" 
                     id="producerName-id" 
@@ -28,31 +30,39 @@
                     [ngModel]="product.producerName" disabled>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-xs-6"> 
-            <label for="price-id">Price</label>
-            <input type="text" class="form-control" id="price-id"
-                    name="price" 
-                    [ngModel]="product.price" disabled>
-          </div>
+        <div class="row">
           <div class="form-group col-xs-6"> 
             <label for="supplier-id">Supplier</label>
             <input type="text" class="form-control" id="supplier-id"
                    name="supplier" [ngModel]="product.supplier.name" disabled>
           </div>
-  
         </div>
-        <div class="form-row">
-          <div class="form-group col-xs-6"> 
-            <label for="unit-type-id">unit type</label>
-            <input type="text" class="form-control" id="unit-type-id" 
-                   name="unitType" [ngModel]="product.unitType" disabled>
-          </div>
-          <div class="form-group col-xs-6"> 
-            <label for="amount-id">Amount</label>
+        <div class="row">
+          <div class="col-xs-3"> 
+            <label for="amount-id">Qtd</label>
             <input type="text" class="form-control" id="aount-id" 
                    name="amount" [ngModel]="product.amount" disabled>
           </div>
+          <div class="col-xs-3"> 
+            <label for="unit-type-id">Unit type</label>
+            <input type="text" class="form-control" id="unit-type-id" 
+                   name="unitType" [ngModel]="product.unitType" disabled>
+          </div>
+
+          <div class="col-xs-3"> 
+            <label for="price-id">Buy Price</label>
+            <input type="text" class="form-control" id="price-id"
+                    name="buyPrice" 
+                    [ngModel]="product.buyPrice" disabled>
+          </div>
+
+          <div class="col-xs-3"> 
+            <label for="sell-price-id">Sell Price</label>
+            <input type="text" class="form-control" id="sell-price-id"
+                    name="sellPrice" 
+                    [ngModel]="product.sellPrice" disabled>
+          </div>
+
         </div>
       </form>
     </div>

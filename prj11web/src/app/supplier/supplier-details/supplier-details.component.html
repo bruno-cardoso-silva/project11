@@ -65,7 +65,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-xs-6"> 
-          <label for="cnpj-id">CNPJ</label>
+          <label for="cnpj-id">CPF/CNPJ</label>
           <input type="text" class="form-control" id="cnpj-id" 
                  name="cnpj" disabled [ngModel]="supplier.cnpj">
         </div>
@@ -88,8 +88,10 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Best price</th>
+                <th scope="col">Qtd.</th>
+                <th scope="col">Un.</th>
+                <th scope="col">Buy price</th>
+                <th scope="col">Sell price</th>
               </tr>
             </thead>
             <tbody>
@@ -97,7 +99,9 @@
                 <th scope="row"> {{i}}</th>
                 <td>{{p.value.name}}</td>
                 <td>{{p.value.amount}}</td>
-                <td>{{p.value.price}}</td>
+                <td>{{p.value.unitType}}</td>
+                <td>{{p.value.buyPrice}}</td>
+                <td>{{p.value.sellPrice}}</td>
               </tr>
             </tbody>
           </table>

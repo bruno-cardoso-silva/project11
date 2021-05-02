@@ -7,6 +7,15 @@ import { AdminComponent } from "./admin/admin.component";
 import { AuthComponent } from "./auth/auth.component";
 import { AdminGuard } from "./auth/guard/admin-guard.service";
 import { ProviderGuard } from "./auth/guard/provider-guard.service";
+import { CheckInDetailsComponent } from "./inventory/check-in/check-in-details/check-in-details.component";
+import { CheckInEditComponent } from "./inventory/check-in/check-in-edit/check-in-edit.component";
+import { CheckInStartComponent } from "./inventory/check-in/check-in-start/check-in-start.component";
+import { CheckInComponent } from "./inventory/check-in/check-in.component";
+import { CheckOutDetailsComponent } from "./inventory/check-out/check-out-details/check-out-details.component";
+import { CheckOutEditComponent } from "./inventory/check-out/check-out-edit/check-out-edit.component";
+import { CheckOutStartComponent } from "./inventory/check-out/check-out-start/check-out-start.component";
+import { CheckOutComponent } from "./inventory/check-out/check-out.component";
+import { InventoryComponent } from "./inventory/inventory.component";
 import { ProductDetailsComponent } from "./product/product-details/product-details.component";
 import { ProductEditComponent } from "./product/product-edit/product-edit.component";
 import { ProductStartComponent } from "./product/product-start/product-start.component";
@@ -21,9 +30,9 @@ const appRoute: Routes  = [
 
   { path: '', redirectTo: 'auth', pathMatch: 'full'},
   { path: 'shopping', component: ShoppingComponent},
-  {path: 'auth', component: AuthComponent},
-  {path: 'provider', component: SupplierComponent, canActivate: [ProviderGuard]},
-  {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], 
+  { path: 'auth', component: AuthComponent},
+  { path: 'provider', component: SupplierComponent, canActivate: [AdminGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], 
           children: [ 
             { path: '', component: AdminStartComponent },
             { path: 'new', component: AdminEditComponent },
@@ -31,8 +40,7 @@ const appRoute: Routes  = [
             { path: ':id/edit', component: AdminEditComponent}
           ]
   },
-//  { path: 'supplier', component: SupplierComponent, canActivate: [AdminGuard], 
-  { path: 'supplier', component: SupplierComponent, 
+  { path: 'supplier', component: SupplierComponent,
         children: [ 
           { path: '', component: SupplierStartComponent },
           { path: 'new', component: SupplierEditComponent },
@@ -40,8 +48,7 @@ const appRoute: Routes  = [
           { path: ':id/edit', component: SupplierEditComponent}
         ]
   },
-  //  { path: 'product', component: SupplierComponent, canActivate: [AdminGuard], 
-  { path: 'product', component: ProductComponent, 
+   { path: 'product', component: ProductComponent, canActivate: [AdminGuard],
         children: [ 
           { path: '', component: ProductStartComponent },
           { path: 'new', component: ProductEditComponent },
@@ -49,6 +56,27 @@ const appRoute: Routes  = [
           { path: ':id/edit', component: ProductEditComponent}
         ]
   },
+  { path: 'inventory', component: InventoryComponent,
+      children: [
+        { path: 'in', component: CheckInComponent, 
+          children: [ 
+              { path: '', component: CheckInStartComponent },
+              { path: 'new', component: CheckInEditComponent },
+              { path: ':id', component: CheckInDetailsComponent },
+              { path: ':id/edit', component: CheckInEditComponent}
+          ]
+        },
+        { path: 'out', component: CheckOutComponent,
+            children: [ 
+              { path: '', component: CheckOutStartComponent },
+              { path: 'new', component: CheckOutEditComponent },
+              { path: ':id', component: CheckOutDetailsComponent },
+              { path: ':id/edit', component: CheckOutEditComponent}
+            ]
+        }
+      ]
+  }, 
+
 ]
 
 @NgModule({

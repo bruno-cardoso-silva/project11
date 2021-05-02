@@ -28,6 +28,7 @@
     "bootstrap": "^3.4.1",
     "firebase": ">= 5.5.7 <8",
     "firebase-functions": "^3.13.2",
+    "ngx-mask": "^11.1.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

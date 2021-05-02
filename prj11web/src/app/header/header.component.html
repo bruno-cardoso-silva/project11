@@ -17,17 +17,28 @@
                     (click)="onLogout()">Logout</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li routerLinkActive="active"> 
-                            <a routerLink="admin" *ngIf="isAdmin">Admin</a>
-                        </li>
-                        <li routerLinkActive="active"> 
-                            <a routerLink="supplier">Supplier</a>
-                        </li>
-                        <li routerLinkActive="active"> 
-                             <a routerLink="product">Products</a>
-                         </li>
-                    </ul>   
+                <li class="dropdown" appDropdown>
+                    <a class="dropdown-toogle" 
+                        role="button"
+                        *ngIf="isAuthenticated"> Manage <span class="caret"></span></a>
+                        <ul class="dropdown-menu nav">
+                            <li routerLinkActive="active"> 
+                                <a routerLink="admin" *ngIf="isAdmin">Admin</a>
+                            </li>
+                            <li routerLinkActive="active"> 
+                                <a routerLink="supplier">Supplier</a>
+                            </li>
+                            <li routerLinkActive="active"> 
+                                <a routerLink="product">Products</a>
+                            </li>
+                            <li routerLinkActive="active"> 
+                                <a routerLink="inventory/in">Check-in</a>
+                            </li>
+                            <li routerLinkActive="active"> 
+                                <a routerLink="inventory/out">Check-out</a>
+                            </li>
+                    </ul>
+                </li>     
             </ul>
         </div>
     </div>

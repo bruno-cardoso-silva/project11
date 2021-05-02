@@ -32,6 +32,26 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { ProductStartComponent } from './product/product-start/product-start.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { ProductItemComponent } from './product/product-list/item/product-item.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { CheckInComponent } from './inventory/check-in/check-in.component';
+import { CheckOutComponent } from './inventory/check-out/check-out.component';
+import { CheckInDetailsComponent } from './inventory/check-in/check-in-details/check-in-details.component';
+import { CheckInEditComponent } from './inventory/check-in/check-in-edit/check-in-edit.component';
+import { CheckInListComponent } from './inventory/check-in/check-in-list/check-in-list.component';
+import { CheckInStartComponent } from './inventory/check-in/check-in-start/check-in-start.component';
+import { InventoryItemComponent } from './inventory/check-in/check-in-list/inventory-item/inventory-item.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { DropdownDirective } from './shared/dropdown.directive';
+import { CheckOutStartComponent } from './inventory/check-out/check-out-start/check-out-start.component';
+import { CheckOutDetailsComponent } from './inventory/check-out/check-out-details/check-out-details.component';
+import { CheckOutEditComponent } from './inventory/check-out/check-out-edit/check-out-edit.component';
+import { CheckOutListComponent } from './inventory/check-out/check-out-list/check-out-list.component';
+import { InventoryItemOutComponent } from './inventory/check-out/check-out-list/inventory-item-out/inventory-item-out.component';
+import { AlertComponent } from './shared/alert/alert.component';
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 
 @NgModule({
@@ -58,8 +78,22 @@ import { ProductItemComponent } from './product/product-list/item/product-item.c
     ProductItemComponent,
     ProductDetailsComponent,
     ProductStartComponent,
-    ProductEditComponent    
-
+    ProductEditComponent,
+    InventoryComponent,
+    CheckInComponent,
+    CheckOutComponent,
+    CheckInStartComponent,
+    CheckInEditComponent,
+    CheckInListComponent,
+    CheckInDetailsComponent,
+    InventoryItemComponent,
+    DropdownDirective,
+    CheckOutStartComponent,
+    CheckOutDetailsComponent,
+    CheckOutEditComponent,
+    CheckOutListComponent,
+    InventoryItemOutComponent,
+    AlertComponent
     ],
   imports: [
     BrowserModule,
@@ -69,11 +103,12 @@ import { ProductItemComponent } from './product/product-list/item/product-item.c
     HttpClientModule,
     AppRouting,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    NgxMaskModule.forRoot(maskConfig),
     AngularFireFunctionsModule,
     FontAwesomeModule
   ],
   providers: [
-    { provide: REGION, useValue: 'us-central1' },
+    {provide: REGION, useValue: 'us-central1' },
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })

@@ -19,11 +19,11 @@ export class SupplierListComponent implements OnInit {
               private activatedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
-   
-    this.supplierSvc.fetchSuppliers()
+    this.supplierSvc.supplierChanged
       .subscribe(suppliers =>  {
           this.suppliers  = suppliers;
       });
+    this.supplierSvc.fetchSuppliers().subscribe();
   }
 
   onNewButtonClicked(){
